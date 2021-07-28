@@ -293,6 +293,7 @@ footer {
     font-size: var(--nav-item-font-size);
     display: var(--nav-item-display);
     margin: var(--nav-item-margin);
+    letter-spacing: var(--nav-item-letter-spacing);
 }
 
 .nav .nav-link {
