@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    color: rgba(0, 0, 0, 0.692);
+}
+
+.box.box1 {
+    font-size: 1rem;
+    background-color: rgba(137, 43, 226, 0.493);
+}
+
+.box.box2 {
+    font-size: 2rem;
+    background-color: cadetblue;
+}
+
+.box.box3 {
+    font-size: 3rem;
+    background-color: rgba(128, 255, 0, 0.637);
+}
+
+.box.box4 {
+    font-size: 2rem;
+    background-color: cornflowerblue;
+}
+
+.box.box5 {
+    font-size: 1rem;
+    background-color: rgba(0, 255, 255, 0.63);
+}
