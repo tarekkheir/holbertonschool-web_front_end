@@ -19,11 +19,11 @@
                 $('body').append('<input type="submit" />');
                 $(':submit').click(_=> queryWikipedia($('input').first().val()));
                 $('body').append('<ul></ul>');
-                $('body').append('<li id="pagination"></li>')
+                $('body').append('<ul id="pagination"></ul>')
             }
 
             function addNewArticle (id, title, snippet) {
-                $('body ul').append(`<li><p><span>${id} - </span><b>${title}</b></p><p>${snippet}</p></li>`);
+                $('body ul:first').append(`<li><p><span>${id} - </span><b>${title}</b></p><p>${snippet}</p></li>`);
             }
 
             function queryWikipedia (search, offset=0) {
@@ -35,6 +35,7 @@
                 })
 
                 data.done(function () {
+                    $('ul:first li').remove();
                     const res = data.responseJSON.query.search;
                     for (let i = 0; i < res.length; i++) {
                         addNewArticle(res[i].pageid, res[i].title, res[i].snippet);
@@ -46,7 +47,7 @@
             }
 
             function buildPagination (numberOfItems, itemsPerPage, currentOffset) {
-                $('#pagination').empty();
+                $('#pagination').children().remove();
                 const nb = numberOfItems / itemsPerPage;
 
                 for (let i = 1; i <= nb; i++) {
