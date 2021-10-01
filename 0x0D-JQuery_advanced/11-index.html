@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Task 0</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    </head>
+
+    <body>
+
+        <script type="application/javascript">
+            function addPostRow (data) {
+                $('body').append(`<p><span>Post created with id: ${data.id}, title: ${data.title}, author: ${data.author}</span></p>`);
+            }
+
+            function listPosts () {
+                $.get('http://localhost:3000/posts/', function (data, status) {
+                    if (status == 'success') {
+                        for (let i = 0; i < data.length; i++) {
+                            addPostRow(data[i]);
+                        }
+                    } else {
+                        alert("Server error");
+                    }
+                });
+            }
+
+            function buildForm () {
+                $('body').append(`<form><div><label>Author</label><input type="text" id="author" /></div><div><label>Title</label><textarea id="title"></textarea></div><input type="submit" onclick=${sendForm()}/></form>`);
+            }
+
+            function sendForm () {
+                $('body form').after().append("About to send the query to the API");
+                const data = {
+                    title: $("input").val(),
+                    author: $('textarea').val()
+                }
+
+                $.post('http://localhost:3000/posts/', function (data, status) {
+                    if (status == "success") {
+                        console.log(data);
+                    } else {
+                        alert("Error sending the POST query");
+                    }
+                });
+            }
+
+            $(document).ready(listPosts());
+            $(document).ready(buildForm());
+        </script>
+    </body>
+</html>
